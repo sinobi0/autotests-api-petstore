@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb1ae6b0-94a4-4345-812d-038ce48ed939" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/clients/pet/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clients/pet/pet_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clients/pet/pet_schema.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testdata/files/image.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clients/store/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clients/store/store_client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clients/store/store_schema.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clients/user/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clients/user/user_client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clients/user/user_schema.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +43,7 @@
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "D:/autotests-api-petstore/testdata/files",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -70,7 +73,8 @@
       <workItem from="1781377487678" duration="2282000" />
       <workItem from="1781397625252" duration="693000" />
       <workItem from="1781550033884" duration="3279000" />
-      <workItem from="1781629379346" duration="5342000" />
+      <workItem from="1781629379346" duration="5544000" />
+      <workItem from="1781892190821" duration="5961000" />
     </task>
     <servers />
   </component>
