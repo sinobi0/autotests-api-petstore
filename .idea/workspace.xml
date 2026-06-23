@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb1ae6b0-94a4-4345-812d-038ce48ed939" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/clients/store/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clients/store/store_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clients/store/store_schema.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clients/user/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clients/user/user_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clients/user/user_schema.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tools/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tools/fakers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients/pet/pet_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/clients/pet/pet_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients/pet/pet_schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/clients/pet/pet_schema.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients/store/store_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/clients/store/store_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients/store/store_schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/clients/store/store_schema.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients/user/user_schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/clients/user/user_schema.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,14 +37,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.fakers (1).executor": "Run",
+    "Python.fakers.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/autotests-api-petstore/testdata/files",
+    "last_opened_file_path": "D:/autotests-api-petstore",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -52,8 +56,65 @@
       <recent name="D:\autotests-api-petstore\testdata\files" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\autotests-api-petstore\tools" />
       <recent name="D:\autotests-api-petstore\clients" />
     </key>
+  </component>
+  <component name="RunManager" selected="Python.fakers (1)">
+    <configuration name="fakers (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="autotests-api-petstore" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools/fakers.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="fakers" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="autotests-api-petstore" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools/fakers" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="D:\autotests-api-petstore\tools\fakers.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.fakers (1)" />
+        <item itemvalue="Python.fakers" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -74,11 +135,17 @@
       <workItem from="1781397625252" duration="693000" />
       <workItem from="1781550033884" duration="3279000" />
       <workItem from="1781629379346" duration="5544000" />
-      <workItem from="1781892190821" duration="5961000" />
+      <workItem from="1781892190821" duration="6611000" />
+      <workItem from="1781982534977" duration="4788000" />
+      <workItem from="1782235746503" duration="4954000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/autotests_api_petstore$fakers.coverage" NAME="fakers Coverage Results" MODIFIED="1781984457170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools/fakers" />
+    <SUITE FILE_PATH="coverage/autotests_api_petstore$fakers__1_.coverage" NAME="fakers (1) Coverage Results" MODIFIED="1781987412665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
   </component>
 </project>

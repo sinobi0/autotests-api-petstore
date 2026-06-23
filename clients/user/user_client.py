@@ -1,7 +1,7 @@
 from httpx import Response
 
 from clients.api_client import APIClient
-from clients.user.user_schema import LoginUserSchema, UserSchema, CreateUserListApi
+from clients.user.user_schema import LoginUserSchema, UserSchema, CreateUserListApi, CreateUserRequestSchema
 
 
 class UserClient(APIClient):
@@ -29,7 +29,7 @@ class UserClient(APIClient):
         """
         return self.get("/v2/user/logout/")
 
-    def create_user_api(self, request: UserSchema):
+    def create_user_api(self, request: CreateUserRequestSchema):
         """
         Запрос на создание пользователя
         :param request: Объект с данными: user_id, user_name, first_name, last_name,
@@ -56,7 +56,7 @@ class UserClient(APIClient):
         """
         return self.post("/v2/user/createWithList", json=request.model_dump(by_alias=True))
 
-    def change_user_by_name_api(self, user_name: str, request: UserSchema):
+    def change_user_by_name_api(self, user_name: str, request: CreateUserRequestSchema):
         """
         Запрос изменения пользователя
         :param user_name: Имя пользователя

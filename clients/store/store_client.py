@@ -1,6 +1,6 @@
 from httpx import Response
 from clients.api_client import APIClient
-from clients.store.store_schema import OrderSchema
+from clients.store.store_schema import OrderSchema, CreateOrderRequestSchema
 
 
 class StoreClient(APIClient):
@@ -12,7 +12,7 @@ class StoreClient(APIClient):
         """
         return self.get(f"/v2/store/inventory")
 
-    def get_order_by_id_api(self, order_id) -> Response:
+    def get_order_by_id_api(self, order_id: int) -> Response:
         """
         Получение заказа по его номеру
         :param order_id: Номер заказа с типом int
@@ -20,7 +20,7 @@ class StoreClient(APIClient):
         """
         return self.get(f"/v2/store/order/{order_id}")
 
-    def create_order_api(self, request: OrderSchema) -> Response:
+    def create_order_api(self, request: CreateOrderRequestSchema) -> Response:
         """
         Создание заказа по животному
         :param request: Объект с параметрами: order_id, pet_id, quantity,
@@ -29,7 +29,7 @@ class StoreClient(APIClient):
         """
         return self.post(f"/v2/store/order", json=request.model_dump(by_alias=True))
 
-    def delete_order_api(self, order_id) -> Response:
+    def delete_order_api(self, order_id: int) -> Response:
         """
         Удаление заказа
         :param order_id: Номер заказа с типом int

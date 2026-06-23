@@ -3,6 +3,8 @@ from datetime import datetime
 
 from pydantic import BaseModel, Field, ConfigDict, RootModel
 
+from tools.fakers import fake
+
 
 class OrderStatus(str, Enum):
     """Перечисление для возможных статусов заказа (в Swagger их обычно 3)"""
@@ -12,6 +14,9 @@ class OrderStatus(str, Enum):
 
 
 class OrderSchema(BaseModel):
+    """
+    Описание структуры заказа
+    """
     model_config = ConfigDict(populate_by_name=True)
     order_id: int = Field(alias="id")
     pet_id: int = Field(alias="petId")
@@ -19,6 +24,19 @@ class OrderSchema(BaseModel):
     ship_date: datetime = Field(alias="shipDate")
     completed_date: bool
 
+class CreateOrderRequestSchema(BaseModel):
+    """
+    Описание структуры заказа
+    """
+    model_config = ConfigDict(populate_by_name=True)
+    order_id: int = Field(alias="id", default_factory=fake.random_int)
+    pet_id: int = Field(alias="petId", default_factory=fake.random_int)
+    quantity: int = Field(alias="quantity", default_factory=fake.random_int)
+    ship_date: datetime = Field(alias="shipDate", default_factory=fake.random_date)
+    complete: bool = Field(default=True)
 
 class InventoryResponseSchema(RootModel[dict[str, int]]):
+    """
+    Описание структуры запроса статусов в магазине
+    """
     pass

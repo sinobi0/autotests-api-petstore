@@ -1,7 +1,7 @@
 from httpx import Response
 
 from clients.api_client import APIClient
-from clients.pet.pet_schema import GetPetByStatusSchema, CreatePetRequestSchema, UploadNewPetRequestSchema, \
+from clients.pet.pet_schema import GetPetByStatusSchema, AddPetRequestSchema, UploadNewPetRequestSchema, \
     UpdatePetRequestSchema, UpdatePetInStoreRequestSchema
 
 
@@ -27,7 +27,7 @@ class PetClient(APIClient):
 
         return self.get(f"/v2/pet/{pet_id}")
 
-    def add_new_pet_api(self, request: CreatePetRequestSchema):
+    def add_new_pet_api(self, request: AddPetRequestSchema):
         """
         Добавление нового pet в store
         :param request: Словарь с данными id, category, name,
