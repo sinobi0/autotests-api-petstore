@@ -3,6 +3,9 @@ from typing import Any
 from httpx import Client, URL, QueryParams, Response
 from httpx._types import RequestData, RequestFiles
 
+from clients.public_http_builder import get_public_http_client
+from clients.user.user_client import UserClient
+
 
 class APIClient:
 
@@ -63,3 +66,10 @@ class APIClient:
         :return: возвращается объект Response с данными ответа
         """
         return self.client.delete(url)
+
+def get_user_client() -> UserClient:
+    """
+    Функция создает уже настроенный клиент
+    :return: Возвращается готовый к использованию UserClient
+    """
+    return UserClient(client=get_public_http_client())

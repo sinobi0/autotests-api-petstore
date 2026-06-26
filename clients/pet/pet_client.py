@@ -3,6 +3,7 @@ from httpx import Response
 from clients.api_client import APIClient
 from clients.pet.pet_schema import GetPetByStatusSchema, AddPetRequestSchema, UploadNewPetRequestSchema, \
     UpdatePetRequestSchema, UpdatePetInStoreRequestSchema
+from clients.public_http_builder import get_public_http_client
 
 
 class PetClient(APIClient):
@@ -75,3 +76,12 @@ class PetClient(APIClient):
         """
 
         return self.delete(f"/v2/pet/{pet_id}")
+
+
+def get_pet_client() -> PetClient:
+    """
+    Функция создаёт экземпляр PetClient с уже настроенным HTTP-клиентом.
+
+    :return: Готовый к использованию PetClient.
+    """
+    return PetClient(client=get_public_http_client())

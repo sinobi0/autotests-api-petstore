@@ -1,5 +1,6 @@
 from httpx import Response
 from clients.api_client import APIClient
+from clients.public_http_builder import get_public_http_client
 from clients.store.store_schema import OrderSchema, CreateOrderRequestSchema
 
 
@@ -36,3 +37,12 @@ class StoreClient(APIClient):
         :return: Объект вида httpx.Response
         """
         return self.delete(f"/v2/store/order/{order_id}")
+
+
+def get_store_client() -> StoreClient:
+    """
+    Функция создаёт экземпляр StoreClient с уже настроенным HTTP-клиентом.
+
+    :return: Готовый к использованию StoreClient.
+    """
+    return StoreClient(client=get_public_http_client())
