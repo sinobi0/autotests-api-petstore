@@ -1,5 +1,5 @@
 from httpx import Response
-
+from tools.routs import APIEndpoints
 from clients.api_client import APIClient
 from clients.pet.pet_schema import GetPetByStatusSchema, AddPetRequestSchema, UploadNewPetRequestSchema, \
     UpdatePetRequestSchema, UpdatePetInStoreRequestSchema
@@ -17,7 +17,7 @@ class PetClient(APIClient):
         :param query: словарь со status
         :return: Ответ в виде объекта httpx.Response
         """
-        return self.get("/v2/pet", params=query.model_dump(by_alias=True))
+        return self.get(APIEndpoints.PET, params=query.model_dump(by_alias=True))
 
     def get_pet_by_id_api(self, pet_id: int) -> Response:
         """
@@ -26,7 +26,7 @@ class PetClient(APIClient):
         :return: Ответ в виде объекта httpx.Response
         """
 
-        return self.get(f"/v2/pet/{pet_id}")
+        return self.get(f"{APIEndpoints.PET}/{pet_id}")
 
     def add_new_pet_api(self, request: AddPetRequestSchema):
         """
@@ -35,7 +35,7 @@ class PetClient(APIClient):
         photo_urls, tags, status
         :return: Ответ в виде объекта httpx.Response
         """
-        return self.post("/v2/pet", json=request.model_dump(by_alias=True))
+        return self.post(APIEndpoints.PET, json=request.model_dump(by_alias=True))
 
     def upload_new_pet_by_id_api(self, pet_id: int, request: UploadNewPetRequestSchema) -> Response:
         """
@@ -45,7 +45,7 @@ class PetClient(APIClient):
         :return: Ответ в виде объекта httpx.Response
         """
         return self.post(
-            f"/v2/pet/{pet_id}",
+            f"{APIEndpoints.PET}/{pet_id}",
             data=request.model_dump(by_alias=True, exclude={"file"}),
             files={"file": request.file.read_bytes()},
             json=None
@@ -58,7 +58,7 @@ class PetClient(APIClient):
         photo_urls, tags, status
         :return: Ответ в виде объекта httpx.Response
         """
-        return self.put("/v2/pet/", json=request.model_dump(by_alias=True))
+        return self.put(APIEndpoints.PET, json=request.model_dump(by_alias=True))
 
     def update_pet_in_store_api(self, request: UpdatePetInStoreRequestSchema) -> Response:
         """
@@ -66,7 +66,7 @@ class PetClient(APIClient):
         :param request: Словарь с данными pet_id, new_name, new_status
         :return: Ответ в виде объекта httpx.Response
         """
-        return self.post("/v2/pet/", data=request.model_dump(by_alias=True), json=None)
+        return self.post(APIEndpoints.PET, data=request.model_dump(by_alias=True), json=None)
 
     def delete_pet_api(self, pet_id: int) -> Response:
         """
@@ -75,7 +75,7 @@ class PetClient(APIClient):
         :return: Ответ в виде объекта httpx.Response
         """
 
-        return self.delete(f"/v2/pet/{pet_id}")
+        return self.delete(f"{APIEndpoints.PET}/{pet_id}")
 
 
 def get_pet_client() -> PetClient:

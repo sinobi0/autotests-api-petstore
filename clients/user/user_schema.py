@@ -31,7 +31,7 @@ class CreateUserRequestSchema(BaseModel):
     """
     model_config = ConfigDict(populate_by_name=True)
     user_name: str = Field(alias="username", default_factory=fake.random_name)
-    user_password: str = Field(alias="password", default_factory=fake.password)
+    user_password: str = Field(alias="password", default_factory=fake.random_password)
 
 class CreateUserListApi(RootModel[list[UserSchema]]):
     """

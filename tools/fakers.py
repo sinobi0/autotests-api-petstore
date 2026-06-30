@@ -1,7 +1,5 @@
 from faker import Faker
 
-from clients.pet.pet_schema import TagSchema
-
 
 class Fake:
 
@@ -21,7 +19,10 @@ class Fake:
         return [self.faker.image_url() for _ in range(self.faker.random_int(1, 3))]
 
     def random_tag(self) -> object:
-        return TagSchema(id=self.random_int(), name=self.faker.string)
+        return {
+            "id": self.random_int(),
+            "name": self.faker.word()
+        }
 
     def random_word(self) -> str:
         return self.faker.word()

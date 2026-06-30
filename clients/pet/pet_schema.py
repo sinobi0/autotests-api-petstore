@@ -1,6 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field, FilePath
-from unicodedata import category
-
 from tools.fakers import fake
 
 
