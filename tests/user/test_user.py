@@ -1,9 +1,10 @@
 from http import HTTPStatus
 
 from clients.user.user_client import UserClient
-from clients.user.user_schema import CreateUserRequestSchema, CreateUserResponseSchema
+from clients.user.user_schema import CreateUserRequestSchema, CreateUserResponseSchema, UserSchema
 from tools.assertions.base import assert_status_code
 from tools.assertions.user import assert_create_user_response
+from tools.assertions.validate_schema import validate_json_schema
 
 
 class TestUser:
@@ -15,3 +16,5 @@ class TestUser:
         assert_status_code(response.status_code, HTTPStatus.OK)
 
         assert_create_user_response(response_data)
+
+        validate_json_schema(response.json(), response_data.model_json_schema())

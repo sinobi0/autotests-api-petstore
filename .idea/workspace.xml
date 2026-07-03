@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb1ae6b0-94a4-4345-812d-038ce48ed939" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fixtures/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fixtures/user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/assertions/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/assertions/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/assertions/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tools/assertions/validate_schema.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clients/user/user_schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/clients/user/user_schema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/user/test_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/user/test_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,7 +136,8 @@
       <workItem from="1782409685276" duration="3094000" />
       <workItem from="1782501442025" duration="2390000" />
       <workItem from="1782838336436" duration="3022000" />
-      <workItem from="1783011139644" duration="5091000" />
+      <workItem from="1783011139644" duration="5925000" />
+      <workItem from="1783104669822" duration="2059000" />
     </task>
     <servers />
   </component>
