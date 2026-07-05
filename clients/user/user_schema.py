@@ -18,6 +18,21 @@ class UserSchema(BaseModel):
     user_status: int = Field(alias="userStatus")
 
 
+class CreateUsersRequestSchema(BaseModel):
+    """
+    Описание структуры создания пользователей
+    """
+    model_config = ConfigDict(populate_by_name=True)
+    user_id: int = Field(alias="id", default_factory=fake.random_int)
+    user_name: str = Field(alias="username", default_factory=fake.random_name)
+    first_name: str = Field(alias="firstName", default_factory=fake.random_name)
+    last_name: str = Field(alias="lastName", default_factory=fake.random_last_name)
+    user_email: str = Field(alias="email", default_factory=fake.random_email)
+    user_password: str = Field(alias="password", default_factory=fake.random_password)
+    user_phone: str = Field(alias="phone", default_factory=fake.random_phone)
+    user_status: int = Field(alias="userStatus", default=1)
+
+
 class LoginUserSchema(BaseModel):
     """
     Описание структуры логина
@@ -45,8 +60,11 @@ class CreateUserResponseSchema(BaseModel):
     type: str
     message: str
 
-class CreateUserListApi(RootModel[list[UserSchema]]):
+
+class CreateUserListSchema(RootModel):
     """
     Описание структуры запроса на создание пользователей
     """
-    pass
+    root: list[CreateUsersRequestSchema] = Field(
+        default_factory=lambda: [CreateUsersRequestSchema()]
+    )

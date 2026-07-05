@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb1ae6b0-94a4-4345-812d-038ce48ed939" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tools/assertions/validate_schema.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fixtures/pet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fixtures/store.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients/user/user_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/clients/user/user_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients/user/user_schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/clients/user/user_schema.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/user/test_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/user/test_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/fakers.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/fakers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,6 +142,8 @@
       <workItem from="1782838336436" duration="3022000" />
       <workItem from="1783011139644" duration="5925000" />
       <workItem from="1783104669822" duration="2059000" />
+      <workItem from="1783111091882" duration="51000" />
+      <workItem from="1783278226928" duration="4725000" />
     </task>
     <servers />
   </component>
