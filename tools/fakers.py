@@ -17,9 +17,7 @@ class Fake:
         Генерирует рандомное имя
         :return:
         """
-        return self.faker.first_name(
-
-        )
+        return f"{self.faker.first_name()} (created Mikhail Kostin)"
 
     def random_last_name(self):
         """
