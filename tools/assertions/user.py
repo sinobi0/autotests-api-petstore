@@ -1,9 +1,11 @@
+from pydantic import BaseModel
+
 from clients.user.user_schema import CreateUserResponseSchema, CreateUserListResponseSchema, UserSchema, \
     CreateUserRequestSchema
 from tools.assertions.base import assert_response
 
 
-def assert_create_user_response(
+def assert_user_response(
         response: CreateUserResponseSchema,
         expected_code: int = 200,
         expected_type: str = "unknown",
@@ -25,29 +27,7 @@ def assert_create_user_response(
         assert_response(response.message, expected_message, "response.message")
 
 
-def assert_create_users_response(
-        response: CreateUserListResponseSchema,
-        expected_code: int = 200,
-        expected_type: str = "unknown",
-        expected_message: str | None = None
-):
-    """
-    Проверяет корректность ответа на запрос создания пользователя
-    :param response: Исходный запрос создания пользователя
-    :param expected_code: Ожидаемый код
-    :param expected_type: Ожидаемый тип
-    :param expected_message: Ожидаемое сообщение
-    :raises AssertionError: в случае несоответствия данных
-    """
-    assert_response(response.code, expected_code, "code")
-    assert_response(response.type, expected_type, "type")
-
-    assert response.message, "Поле message пустое, ожидалось числовое значение/ID"
-    if expected_message is not None:
-        assert_response(response.message, expected_message, "response.message")
-
-
-def assert_get_user_response(actual: UserSchema, expected: CreateUserRequestSchema):
+def assert_get_user_response(actual: BaseModel, expected: BaseModel):
     """
     Проверяет, что ответ на запрос получения пользователя корректен
     :param actual: Исходный ответ на запрос получения пользователя

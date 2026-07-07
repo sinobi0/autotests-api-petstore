@@ -4,10 +4,11 @@ import pytest
 
 from clients.user.user_client import UserClient
 from clients.user.user_schema import CreateUserRequestSchema, CreateUserResponseSchema, CreateUserListRequestSchema, \
-    CreateUserListResponseSchema, UserSchema
+    CreateUserListResponseSchema, UpdateUserResponseSchema, GetUserResponseSchema, UpdateUserRequestSchema, \
+    DeleteUserResponseSchema
 from fixtures.user import UserFixture, user_client
 from tools.assertions.base import assert_status_code
-from tools.assertions.user import assert_create_user_response, assert_create_users_response, assert_get_user_response
+from tools.assertions.user import assert_user_response, assert_get_user_response
 from tools.assertions.validate_schema import validate_json_schema
 
 
@@ -17,20 +18,23 @@ class TestUser:
 
     def test_create_user(self, user_client: UserClient):
         create_user_req = CreateUserRequestSchema()
-        response = user_client.create_user_api(create_user_req)
-        response_data = CreateUserResponseSchema.model_validate_json(response.text)
-        assert_status_code(response.status_code, HTTPStatus.OK)
+        create_user_response = user_client.create_user_api(create_user_req)
+        create_user_response_data = CreateUserResponseSchema.model_validate_json(create_user_response.text)
+        assert_status_code(create_user_response.status_code, HTTPStatus.OK)
 
-        assert_create_user_response(response_data)
+        assert_user_response(create_user_response_data)
 
-        validate_json_schema(response.json(), response_data.model_json_schema())
+        get_user_response = user_client.get_user_by_name_api(create_user_req.user_name)
+        assert_status_code(get_user_response.status_code, HTTPStatus.OK)
+
+        validate_json_schema(create_user_response.json(), create_user_response_data.model_json_schema())
 
     def test_create_list_users(self, user_client: UserClient):
         create_users_req = CreateUserListRequestSchema()
         response = user_client.create_user_list_api(create_users_req)
         response_data = CreateUserListResponseSchema.model_validate_json(response.text)
 
-        assert_create_users_response(response_data)
+        assert_user_response(response_data)
         assert_status_code(response.status_code, HTTPStatus.OK)
         validate_json_schema(response.json(), response_data.model_json_schema())
 
@@ -39,7 +43,7 @@ class TestUser:
         response = user_client.create_user_array_api(create_users_req)
         response_data = CreateUserListResponseSchema.model_validate_json(response.text)
 
-        assert_create_users_response(response_data)
+        assert_user_response(response_data)
         assert_status_code(response.status_code, HTTPStatus.OK)
         validate_json_schema(response.json(), response_data.model_json_schema())
 
@@ -49,8 +53,36 @@ class TestUser:
             function_create_user: UserFixture
     ):
         response = user_client.get_user_by_name_api(function_create_user.request.user_name)
-        response_data = UserSchema.model_validate_json(response.text)
+        response_data = GetUserResponseSchema.model_validate_json(response.text)
 
         assert_status_code(response.status_code, HTTPStatus.OK)
         assert_get_user_response(response_data, function_create_user.request)
         validate_json_schema(response.json(), response_data.model_json_schema())
+
+    def test_update_user_data(
+            self,
+            user_client: UserClient,
+            function_create_user: UserFixture
+    ):
+        request = UpdateUserRequestSchema()
+        response = user_client.update_user_by_name_api(function_create_user.request.user_name, request)
+
+        response_data = UpdateUserResponseSchema.model_validate_json(response.text)
+        assert_user_response(response_data)
+        assert_status_code(response.status_code, HTTPStatus.OK)
+        validate_json_schema(response.json(), response_data.model_json_schema())
+
+    def test_delete_user_by_username(
+            self,
+            user_client: UserClient,
+            function_create_user: UserFixture
+    ):
+        response = user_client.delete_user_by_name_api(function_create_user.request.user_name)
+        response_data = DeleteUserResponseSchema.model_validate_json(response.text)
+
+        assert_status_code(response.status_code, HTTPStatus.OK)
+        assert_user_response(response_data)
+        validate_json_schema(response.json(), response_data.model_json_schema())
+
+        get_user_response = user_client.get_user_by_name_api(function_create_user.request.user_name)
+        assert_status_code(get_user_response.status_code, HTTPStatus.NOT_FOUND)

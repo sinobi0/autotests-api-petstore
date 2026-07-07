@@ -3,7 +3,8 @@ from httpx import Response
 from clients.public_http_builder import get_public_http_client
 from tools.routs import APIEndpoints
 from clients.api_client import APIClient
-from clients.user.user_schema import LoginUserSchema, CreateUserListRequestSchema, CreateUserRequestSchema
+from clients.user.user_schema import LoginUserSchema, CreateUserListRequestSchema, CreateUserRequestSchema, \
+UpdateUserRequestSchema
 
 
 class UserClient(APIClient):
@@ -58,7 +59,7 @@ class UserClient(APIClient):
         """
         return self.post(f"{APIEndpoints.USER}/createWithList", json=request.model_dump(by_alias=True))
 
-    def change_user_by_name_api(self, user_name: str, request: CreateUserRequestSchema):
+    def update_user_by_name_api(self, user_name: str, request: UpdateUserRequestSchema):
         """
         Запрос изменения пользователя
         :param user_name: Имя пользователя
