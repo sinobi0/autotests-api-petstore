@@ -32,27 +32,15 @@ class TestUser:
         assert_status_code(get_user_response.status_code, HTTPStatus.OK)
         assert_get_user_response(get_user_response_data, create_user_req)
 
-    def test_create_list_users(self, user_client: UserClient):
+    @pytest.mark.parametrize("api_method_name", [
+        "create_user_list_api",
+        "create_user_array_api"
+    ])
+    def test_create_multiple_users(self, user_client: UserClient, api_method_name: str):
         create_users_req = CreateUserListRequestSchema()
 
-        response = user_client.create_user_list_api(create_users_req)
-        response_data = CreateUserListResponseSchema.model_validate_json(response.text)
-
-        assert_status_code(response.status_code, HTTPStatus.OK)
-        validate_json_schema(response.json(), response_data.model_json_schema())
-        assert_user_response(response_data)
-
-        for users_data in create_users_req.root:
-            get_user_response = user_client.get_user_by_name_api(users_data.user_name)
-            get_user_response_data = GetUserResponseSchema.model_validate_json(get_user_response.text)
-
-            assert_status_code(get_user_response.status_code, HTTPStatus.OK)
-            assert_get_user_response(get_user_response_data, users_data)
-
-    def test_create_array_users(self, user_client: UserClient):
-        create_users_req = CreateUserListRequestSchema()
-
-        response = user_client.create_user_array_api(create_users_req)
+        api_method = getattr(user_client, api_method_name)
+        response = api_method(create_users_req)
         response_data = CreateUserListResponseSchema.model_validate_json(response.text)
 
         assert_status_code(response.status_code, HTTPStatus.OK)
