@@ -49,17 +49,21 @@ class AddPetRequestSchema(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
     pet_id: int = Field(alias="id", default_factory=fake.random_int)
     category: CategorySchema = Field(default_factory=lambda: CategorySchema(
-        category_id=fake.random_int,
-        category_name=fake.random_word
+        category_id=fake.random_int(),
+        category_name=fake.random_word()
     ))
     pet_name: str = Field(alias="name", default_factory=fake.random_name)
     photo_urls: list = Field(alias="photoUrls", default_factory=fake.random_photo)
     tags: list[TagSchema] = Field(default_factory=lambda: [TagSchema(
-        tag_id=fake.random_int,
-        tag_name=fake.random_word
+        tag_id=fake.random_int(),
+        tag_name=fake.random_word()
     )])
     pet_status: str = Field(alias="status", default="available")
 
+class AddPetResponseSchema(PetSchema):
+    """
+    Описание структуры ответа на запрос добавления животного
+    """
 
 class UploadNewPetRequestSchema(BaseModel):
     """
@@ -69,8 +73,8 @@ class UploadNewPetRequestSchema(BaseModel):
 
     pet_id: int = Field(alias="petId", default_factory=fake.random_int)
     category: CategorySchema = Field(default_factory=lambda: CategorySchema(
-        category_id=fake.random_int,
-        category_name=fake.random_word
+        category_id=fake.random_int(),
+        category_name=fake.random_word()
     ))
     pet_name: str = Field(alias="name", default_factory=fake.random_name)
     additional_metadata: str = Field(
@@ -88,14 +92,14 @@ class UpdatePetRequestSchema(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
     pet_id: int = Field(alias="id", default_factory=fake.random_int)
     category: CategorySchema = Field(default_factory=lambda: CategorySchema(
-        category_id=fake.random_int,
-        category_name=fake.random_word
+        category_id=fake.random_int(),
+        category_name=fake.random_word()
     ))
     pet_name: str = Field(alias="name", default_factory=fake.random_name)
     photo_urls: list = Field(alias="photoUrls", default_factory=fake.random_photo)
     tags: list[TagSchema] = Field(default_factory=lambda: [TagSchema(
-        tag_id=fake.random_int,
-        tag_name=fake.random_word
+        tag_id=fake.random_int(),
+        tag_name=fake.random_word()
     )])
     pet_status: str = Field(alias="status", default="available")
 
@@ -108,3 +112,8 @@ class UpdatePetInStoreRequestSchema(BaseModel):
     pet_id: int = Field(alias="id", default_factory=fake.random_int)
     new_name: str = Field(alias="name", default_factory=fake.random_name)
     new_status: str = Field(alias="status", default="available")
+
+class GetPetResponseSchema(PetSchema):
+    """
+    Описание структуры получения животного в магазиане
+    """
