@@ -1,10 +1,10 @@
 from pydantic import BaseModel
 
-from clients.pet.pet_schema import GetPetResponseSchema, AddPetResponseSchema
+from clients.pet.pet_schema import PetSchema, AddPetResponseSchema, GetPetListResponseSchema, AddPetRequestSchema
 from tools.assertions.base import assert_response, assert_length
 
 
-def assert_pet_response(actual: GetPetResponseSchema, expected: BaseModel):
+def assert_pet_response(actual: PetSchema, expected: BaseModel):
     assert_length(actual.tags, expected.tags, "tags")
     assert_length(actual.photo_urls, expected.photo_urls, "photo_urls")
 
@@ -23,3 +23,12 @@ def assert_pet_response(actual: GetPetResponseSchema, expected: BaseModel):
     for index, actual_url in enumerate(actual.photo_urls):
         expected_url = expected.photo_urls[index]
         assert_response(actual_url, expected_url, "url")
+
+def assert_get_pets_by_status_response(actual: GetPetListResponseSchema, expected: AddPetRequestSchema):
+
+    for actual_pet in actual.root:
+
+        assert_response(actual_pet.pet_status, expected.pet_status, "pet_status")
+
+        if actual_pet.pet_name == expected.pet_name:
+            assert_pet_response(actual_pet, expected)

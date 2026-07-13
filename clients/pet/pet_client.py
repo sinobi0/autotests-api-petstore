@@ -1,7 +1,7 @@
 from httpx import Response
 from tools.routs import APIEndpoints
 from clients.api_client import APIClient
-from clients.pet.pet_schema import GetPetByStatusSchema, AddPetRequestSchema, UploadNewPetRequestSchema, \
+from clients.pet.pet_schema import GetPetByStatusRequestSchema, AddPetRequestSchema, UploadNewPetRequestSchema, \
     UpdatePetRequestSchema, UpdatePetInStoreRequestSchema
 from clients.public_http_builder import get_public_http_client
 
@@ -11,13 +11,13 @@ class PetClient(APIClient):
     Клиент для работы с /v2/pet
     """
 
-    def get_pet_by_status_api(self, query: GetPetByStatusSchema) -> Response:
+    def get_pet_by_status_api(self, query: GetPetByStatusRequestSchema) -> Response:
         """
         Получение pets по status
         :param query: словарь со status
         :return: Ответ в виде объекта httpx.Response
         """
-        return self.get(APIEndpoints.PET, params=query.model_dump(by_alias=True))
+        return self.get(f"{APIEndpoints.PET}/findByStatus", params=query.model_dump(by_alias=True))
 
     def get_pet_by_id_api(self, pet_id: int) -> Response:
         """

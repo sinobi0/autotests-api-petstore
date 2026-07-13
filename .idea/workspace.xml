@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb1ae6b0-94a4-4345-812d-038ce48ed939" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/pet/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/pet/test_pet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/assertions/pet.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients/pet/pet_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/clients/pet/pet_client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clients/pet/pet_schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/clients/pet/pet_schema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fixtures/pet.py" beforeDir="false" afterPath="$PROJECT_DIR$/fixtures/pet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/assertions/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/assertions/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/pet/test_pet.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/pet/test_pet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/assertions/pet.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/assertions/pet.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +146,8 @@
       <workItem from="1783449936673" duration="4635000" />
       <workItem from="1783536916565" duration="2654000" />
       <workItem from="1783631078617" duration="1299000" />
-      <workItem from="1783785256777" duration="5949000" />
+      <workItem from="1783785256777" duration="6908000" />
+      <workItem from="1783970020187" duration="4538000" />
     </task>
     <servers />
   </component>

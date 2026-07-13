@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field, FilePath
+from pydantic import BaseModel, ConfigDict, Field, FilePath, RootModel
 from tools.fakers import fake
 
 
@@ -27,14 +27,14 @@ class PetSchema(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
     pet_id: int = Field(alias="id")
-    category: CategorySchema
-    pet_name: str = Field(alias="name")
+    category: CategorySchema = Field(default=None)
+    pet_name: str = Field(alias="name", default=None)
     photo_urls: list = Field(alias="photoUrls")
-    tags: list[TagSchema]
+    tags: list[TagSchema] = Field(default=[])
     pet_status: str = Field(alias="status")
 
 
-class GetPetByStatusSchema(BaseModel):
+class GetPetByStatusRequestSchema(BaseModel):
     """
     Описание структуры статуса сущности животного
     """
@@ -113,7 +113,8 @@ class UpdatePetInStoreRequestSchema(BaseModel):
     new_name: str = Field(alias="name", default_factory=fake.random_name)
     new_status: str = Field(alias="status", default="available")
 
-class GetPetResponseSchema(PetSchema):
+class GetPetListResponseSchema(RootModel):
     """
     Описание структуры получения животного в магазиане
     """
+    root: list[PetSchema]
