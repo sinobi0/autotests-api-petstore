@@ -109,7 +109,6 @@ class UpdatePetInStoreRequestSchema(BaseModel):
     Описание структуры запроса на обновление сущности животного в магазине
     """
     model_config = ConfigDict(populate_by_name=True)
-    pet_id: int = Field(alias="id", default_factory=fake.random_int)
     new_name: str = Field(alias="name", default_factory=fake.random_name)
     new_status: str = Field(alias="status", default="available")
 
@@ -118,3 +117,12 @@ class GetPetListResponseSchema(RootModel):
     Описание структуры получения животного в магазиане
     """
     root: list[PetSchema]
+
+class UpdatePetInStoreResponseSchema(BaseModel):
+    """
+    Описание структуры ответа обновления пользователя в магазине
+    """
+    model_config = ConfigDict(populate_by_name=True)
+    code: int
+    type: str
+    message: str

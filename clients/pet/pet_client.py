@@ -60,13 +60,14 @@ class PetClient(APIClient):
         """
         return self.put(APIEndpoints.PET, json=request.model_dump(by_alias=True))
 
-    def update_pet_in_store_api(self, request: UpdatePetInStoreRequestSchema) -> Response:
+    def update_pet_in_store_api(self, request: UpdatePetInStoreRequestSchema, pet_id: int) -> Response:
         """
         Обновление формы pet в магазине
         :param request: Словарь с данными pet_id, new_name, new_status
+        :param pet_id: id животного в магазине
         :return: Ответ в виде объекта httpx.Response
         """
-        return self.post(APIEndpoints.PET, data=request.model_dump(by_alias=True), json=None)
+        return self.post(f"{APIEndpoints.PET}/{pet_id}", data=request.model_dump(by_alias=True), json=None)
 
     def delete_pet_api(self, pet_id: int) -> Response:
         """

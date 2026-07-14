@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 
-from clients.pet.pet_schema import PetSchema, AddPetResponseSchema, GetPetListResponseSchema, AddPetRequestSchema
+from clients.pet.pet_schema import PetSchema, AddPetResponseSchema, GetPetListResponseSchema, AddPetRequestSchema, \
+    UpdatePetInStoreResponseSchema, UpdatePetInStoreRequestSchema
 from tools.assertions.base import assert_response, assert_length
 
 
@@ -32,3 +33,37 @@ def assert_get_pets_by_status_response(actual: GetPetListResponseSchema, expecte
 
         if actual_pet.pet_name == expected.pet_name:
             assert_pet_response(actual_pet, expected)
+
+def assert_pet_response_default(
+        response: UpdatePetInStoreResponseSchema,
+        expected_code: int = 200,
+        expected_type: str = "unknown",
+        expected_message: str | None = None
+):
+    """
+    Проверяет корректность ответа на запрос создания животного
+    :param response: Исходный запрос создания живоотного
+    :param expected_code: Ожидаемый код
+    :param expected_type: Ожидаемый тип
+    :param expected_message: Ожидаемое сообщение
+    :raises AssertionError: в случае несоответствия данных
+    """
+    assert_response(response.code, expected_code, "code")
+    assert_response(response.type, expected_type, "type")
+
+    assert response.message, "Поле message пустое, ожидалось числовое значение/ID"
+    if expected_message is not None:
+        assert_response(response.message, expected_message, "response.message")
+
+
+def prepare_updated_pet(base_request: AddPetRequestSchema, update_request: UpdatePetInStoreRequestSchema) -> AddPetRequestSchema:
+    """
+    Копирует объект запроса на создание животного и возвращает обновленный объект
+    :param base_request: Объект с данными создания животного
+    :param update_request: Объект с данными обновления животного
+    :return: Данные вида AddPetRequestSchema
+    """
+    updated = base_request.model_copy()
+    updated.pet_name = update_request.new_name
+    updated.pet_status = update_request.new_status
+    return updated
