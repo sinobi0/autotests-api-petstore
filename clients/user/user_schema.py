@@ -18,7 +18,7 @@ class UserSchema(BaseModel):
     user_status: int = Field(alias="userStatus")
 
 
-class LoginUserSchema(BaseModel):
+class LoginUserRequestSchema(BaseModel):
     """
     Описание структуры логина
     """
@@ -92,4 +92,13 @@ class GetUserResponseSchema(UserSchema):
 class DeleteUserResponseSchema(CreateUserResponseSchema):
     """
     Описание структуры ответа удаления пользователя
+    """
+class LoginUserResponseSchema(CreateUserResponseSchema):
+    """
+    Описание структуры ответа логина пользователя
+    """
+
+class LogoutUserResponseSchema(CreateUserResponseSchema):
+    """
+    Описание структуры ответа логина пользователя
     """

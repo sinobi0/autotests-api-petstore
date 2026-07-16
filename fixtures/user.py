@@ -1,8 +1,9 @@
 import pytest
+from httpx import request
 from pydantic import BaseModel
 
 from clients.user.user_client import get_user_client, UserClient
-from clients.user.user_schema import CreateUserRequestSchema, CreateUserResponseSchema
+from clients.user.user_schema import CreateUserRequestSchema, CreateUserResponseSchema, LoginUserRequestSchema
 
 
 class UserFixture(BaseModel):
@@ -25,3 +26,12 @@ def function_create_user(user_client: UserClient):
         request=request,
         response=response_data
     )
+
+@pytest.fixture
+def login_user(user_client: UserClient, function_create_user: UserFixture):
+
+    request = LoginUserRequestSchema(
+        user_name=function_create_user.request.user_name,
+        password=function_create_user.request.user_password
+    )
+    return request

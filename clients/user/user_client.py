@@ -3,7 +3,7 @@ from httpx import Response
 from clients.public_http_builder import get_public_http_client
 from tools.routs import APIEndpoints
 from clients.api_client import APIClient
-from clients.user.user_schema import LoginUserSchema, CreateUserListRequestSchema, CreateUserRequestSchema, \
+from clients.user.user_schema import LoginUserRequestSchema, CreateUserListRequestSchema, CreateUserRequestSchema, \
 UpdateUserRequestSchema
 
 
@@ -17,7 +17,7 @@ class UserClient(APIClient):
         """
         return self.get(f"{APIEndpoints.USER}/{user_name}")
 
-    def login_user_api(self, query: LoginUserSchema):
+    def login_user_api(self, query: LoginUserRequestSchema):
         """
         Запрос логина пользователя в систему
         :param query: Объект с данными: username, password

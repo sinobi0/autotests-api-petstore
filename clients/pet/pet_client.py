@@ -1,8 +1,8 @@
 from httpx import Response
 from tools.routs import APIEndpoints
 from clients.api_client import APIClient
-from clients.pet.pet_schema import GetPetByStatusRequestSchema, AddPetRequestSchema, UploadNewPetRequestSchema, \
-    UpdatePetRequestSchema, UpdatePetInStoreRequestSchema
+from clients.pet.pet_schema import GetPetByStatusRequestSchema, AddPetRequestSchema, \
+    UpdatePetRequestSchema, UpdatePetInStoreRequestSchema, UploadImagePetRequestSchema
 from clients.public_http_builder import get_public_http_client
 
 
@@ -37,7 +37,7 @@ class PetClient(APIClient):
         """
         return self.post(APIEndpoints.PET, json=request.model_dump(by_alias=True))
 
-    def upload_new_pet_by_id_api(self, pet_id: int, request: UploadNewPetRequestSchema) -> Response:
+    def upload_image_pet_by_id_api(self, pet_id: int, request: UploadImagePetRequestSchema) -> Response:
         """
         Добавление нового файла нового pet в store
         :param request: Словарь с данными pet_id, additional_metadata, file
@@ -45,7 +45,7 @@ class PetClient(APIClient):
         :return: Ответ в виде объекта httpx.Response
         """
         return self.post(
-            f"{APIEndpoints.PET}/{pet_id}",
+            f"{APIEndpoints.PET}/{pet_id}/uploadImage",
             data=request.model_dump(by_alias=True, exclude={"file"}),
             files={"file": request.file.read_bytes()},
             json=None

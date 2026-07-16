@@ -1,11 +1,12 @@
 from http import HTTPStatus
 
 import pytest
+from httpx import request
 
 from clients.user.user_client import UserClient
 from clients.user.user_schema import CreateUserRequestSchema, CreateUserResponseSchema, CreateUserListRequestSchema, \
     CreateUserListResponseSchema, UpdateUserResponseSchema, GetUserResponseSchema, UpdateUserRequestSchema, \
-    DeleteUserResponseSchema
+    DeleteUserResponseSchema, LoginUserRequestSchema, LoginUserResponseSchema, LogoutUserResponseSchema
 from fixtures.user import UserFixture, user_client
 from tools.assertions.base import assert_status_code
 from tools.assertions.user import assert_user_response, assert_get_user_response
@@ -86,6 +87,29 @@ class TestUser:
 
         assert_status_code(response_get_user.status_code, HTTPStatus.OK)
         assert_get_user_response(response_get_user_data, function_create_user.request)
+
+    def test_login(self, user_client: UserClient, function_create_user: UserFixture):
+
+        login_user_request = LoginUserRequestSchema(
+            user_name=function_create_user.request.user_name,
+            password=function_create_user.request.user_password
+        )
+        login_user_response = user_client.login_user_api(login_user_request)
+        login_user_response_data = LoginUserResponseSchema.model_validate_json(login_user_response.text)
+
+        assert_status_code(login_user_response.status_code, HTTPStatus.OK)
+        assert_user_response(login_user_response_data)
+
+        validate_json_schema(login_user_response.json(), login_user_response_data.model_json_schema())
+
+    def test_logout(self, user_client: UserClient, login_user: LoginUserRequestSchema):
+        response = user_client.logout_user_api()
+        response_data = LogoutUserResponseSchema.model_validate_json(response.text)
+
+        assert_status_code(response.status_code, HTTPStatus.OK)
+        assert_user_response(response_data)
+
+        validate_json_schema(response.json(), response_data.model_json_schema())
 
     def test_delete_user_by_username(
             self,

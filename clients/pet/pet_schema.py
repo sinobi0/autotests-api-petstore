@@ -60,28 +60,22 @@ class AddPetRequestSchema(BaseModel):
     )])
     pet_status: str = Field(alias="status", default="available")
 
+
 class AddPetResponseSchema(PetSchema):
     """
     Описание структуры ответа на запрос добавления животного
     """
 
-class UploadNewPetRequestSchema(BaseModel):
+
+class UploadImagePetRequestSchema(BaseModel):
     """
     Описание структуры запроса на обновление сущности животного
     """
     model_config = ConfigDict(populate_by_name=True)
-
-    pet_id: int = Field(alias="petId", default_factory=fake.random_int)
-    category: CategorySchema = Field(default_factory=lambda: CategorySchema(
-        category_id=fake.random_int(),
-        category_name=fake.random_word()
-    ))
-    pet_name: str = Field(alias="name", default_factory=fake.random_name)
     additional_metadata: str = Field(
         alias="additionalMetadata",
         default_factory=fake.random_word
     )
-    pet_status: str = Field(alias="status", default="available")
     file: FilePath
 
 
@@ -112,11 +106,13 @@ class UpdatePetInStoreRequestSchema(BaseModel):
     new_name: str = Field(alias="name", default_factory=fake.random_name)
     new_status: str = Field(alias="status", default="available")
 
+
 class GetPetListResponseSchema(RootModel):
     """
     Описание структуры получения животного в магазиане
     """
     root: list[PetSchema]
+
 
 class UpdatePetInStoreResponseSchema(BaseModel):
     """
@@ -126,3 +122,14 @@ class UpdatePetInStoreResponseSchema(BaseModel):
     code: int
     type: str
     message: str
+
+
+class UploadImagePetResponseSchema(UpdatePetInStoreResponseSchema):
+    """
+    Описание структуры ответа загрузки изображения животного в магазине
+    """
+
+class DeletePetResponseSchema(UpdatePetInStoreResponseSchema):
+    """
+    Описание структуры ответа удаления животного из магазина
+    """

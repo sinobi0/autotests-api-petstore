@@ -16,7 +16,7 @@ def pet_client() -> PetClient:
 
 
 @pytest.fixture
-def create_pet(pet_client):
+def function_create_pet(pet_client):
     request = AddPetRequestSchema()
     response = pet_client.add_new_pet_api(request)
     response_data = AddPetResponseSchema.model_validate_json(response.text)
