@@ -1,3 +1,5 @@
+from datetime import datetime, timezone
+
 from faker import Faker
 
 
@@ -50,11 +52,11 @@ class Fake:
         """
         return self.faker.word()
 
-    def random_date(self) -> str:
+    def random_date(self) -> datetime:
         """
         Генерирует рандомную дату в формате iso8601
         """
-        return str(self.faker.iso8601())
+        return self.faker.date_time(tzinfo=timezone.utc)
 
     def random_password(self) -> str:
         """

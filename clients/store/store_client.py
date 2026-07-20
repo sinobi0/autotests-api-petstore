@@ -29,7 +29,7 @@ class StoreClient(APIClient):
         ship_date, completed_date
         :return: Объект вида httpx.Response
         """
-        return self.post(f"{APIEndpoints.STORE}/order", json=request.model_dump(by_alias=True))
+        return self.post(f"{APIEndpoints.STORE}/order", json=request.model_dump(by_alias=True, mode="json"))
 
     def delete_order_api(self, order_id: int) -> Response:
         """

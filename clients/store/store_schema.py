@@ -22,7 +22,7 @@ class OrderSchema(BaseModel):
     pet_id: int = Field(alias="petId")
     quantity: int = Field(alias="quantity")
     ship_date: datetime = Field(alias="shipDate")
-    completed_date: bool
+    complete: bool
 
 class CreateOrderRequestSchema(BaseModel):
     """
@@ -34,6 +34,17 @@ class CreateOrderRequestSchema(BaseModel):
     quantity: int = Field(alias="quantity", default_factory=fake.random_int)
     ship_date: datetime = Field(alias="shipDate", default_factory=fake.random_date)
     complete: bool = Field(default=True)
+
+class CreateOrderResponseSchema(OrderSchema):
+    """
+    Описание структуры ответа на создание заказа
+    """
+    model_config = ConfigDict(populate_by_name=True)
+    order_id: int = Field(alias="id")
+    pet_id: int = Field(alias="petId")
+    quantity: int = Field(alias="quantity")
+    ship_date: datetime = Field(alias="shipDate")
+    complete: bool
 
 class InventoryResponseSchema(RootModel[dict[str, int]]):
     """
