@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb1ae6b0-94a4-4345-812d-038ce48ed939" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/store/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/store/test_store.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/assertions/store.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clients/store/store_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/clients/store/store_client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clients/store/store_schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/clients/store/store_schema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fixtures/store.py" beforeDir="false" afterPath="$PROJECT_DIR$/fixtures/store.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/fakers.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/fakers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/routs.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/routs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/store/test_store.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/store/test_store.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +150,9 @@
       <workItem from="1784224972721" duration="6154000" />
       <workItem from="1784380746452" duration="642000" />
       <workItem from="1784477339870" duration="2689000" />
-      <workItem from="1784569353652" duration="2682000" />
+      <workItem from="1784569353652" duration="3140000" />
+      <workItem from="1784826715377" duration="207000" />
+      <workItem from="1784835379932" duration="983000" />
     </task>
     <servers />
   </component>

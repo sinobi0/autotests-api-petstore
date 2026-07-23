@@ -46,8 +46,17 @@ class CreateOrderResponseSchema(OrderSchema):
     ship_date: datetime = Field(alias="shipDate")
     complete: bool
 
-class InventoryResponseSchema(RootModel[dict[str, int]]):
+class GetInventoryResponseSchema(RootModel[dict[str, int]]):
     """
     Описание структуры запроса статусов в магазине
     """
     pass
+
+class DeleteOrderResponseSchema(BaseModel):
+    """
+    Описание структуры ответа удаления заказа
+    """
+    model_config = ConfigDict(populate_by_name=True)
+    code: int
+    type: str
+    message: str
